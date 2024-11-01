@@ -54,3 +54,24 @@ body{
     width: 60%;
   }
 }
+
+.hrn-modal__footer{
+  gap: 1rem;
+}
+
+.modal__btn.btn{
+  width: 10rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+  .modal__title{
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .modal__title{
+    font-size: 0.9rem;
+  }
+}

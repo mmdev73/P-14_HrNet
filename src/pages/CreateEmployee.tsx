@@ -162,13 +162,13 @@ const CreateEmployee = () => {
   const footerTemplate = (
     <>
       {
-        error && <button className="modal__btn" onClick={handleCancelModal}>Close</button>
+        error && <button className="btn modal__btn" onClick={handleCancelModal}>Close</button>
       }
       {
         !error && (
           <>
-            <button className="modal__btn" onClick={handleCancel}>New employee</button>
-            <button className="modal__btn" onClick={handleViewEmployees}>View employees</button>
+            <button className="btn modal__btn" onClick={handleCancel}>New employee</button>
+            <button className="btn modal__btn" onClick={handleViewEmployees}>View employees</button>
           </>
         )
       }
@@ -203,12 +203,14 @@ const CreateEmployee = () => {
             id="firstname"
             value={firstname}
             onChange={(e) => updateField('firstname', e.target.value)}
+            regex={/^(?:[a-zA-ZÀ-ÿ]{1,31}|[a-zA-ZÀ-ÿ]{1,15}[ -][a-zA-ZÀ-ÿ]{1,15})$/}
           />
           <InputText
             label="Last Name"
             id="lastname"
             value={lastname}
             onChange={(e) => updateField('lastname', e.target.value)}
+            regex={/^(?:[a-zA-ZÀ-ÿ]{1,31}|[a-zA-ZÀ-ÿ]{1,15}[ -][a-zA-ZÀ-ÿ]{1,15})$/}
           />
           <DatePicker
             id="dob"
@@ -236,18 +238,21 @@ const CreateEmployee = () => {
             id="street"
             value={street}
             onChange={(e) => updateField('street', e.target.value)}
+            regex={/^\d+\s+\w+(\s\w+)*(,\s*(Apt|Suite|Unit|Building|Bldg)\s*\d+)?$/}
           />
           <InputText
             label="City"
             id="city"
             value={city}
             onChange={(e) => updateField('city', e.target.value)}
+            regex={/^(?:[a-zA-ZÀ-ÿ]{1,31}|[a-zA-ZÀ-ÿ]{1,15}[- ][a-zA-ZÀ-ÿ]{1,15})$/}
           />
           <InputText
             label="ZipCode"
             id="zipcode"
             value={zipcode}
             onChange={(e) => updateField('zipcode', e.target.value)}
+            regex={/^\d{5}(-\d{4})?$/}
           />
           <Select 
             options={selectOptionsState}
