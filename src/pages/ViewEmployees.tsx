@@ -1,10 +1,9 @@
-import React from 'react'
+//import React from 'react'
 import { useAppStore } from '../app/store'
-import {DataTable} from "hrnet-lib3"
-
+import { DataTable } from 'hrnet-lib'
 const ViewEmployee = () => {
   const employeeList = useAppStore.use.employeesList()
-  const thList = [
+  const thList: string[] = [
     "First Name",
     "Last Name",
     "Start Date",
@@ -15,7 +14,7 @@ const ViewEmployee = () => {
     "State",
     "Zip Code"
   ]
-  const dataProperties = [
+  const dataProperties:string[] = [
     "firstname",
     "lastname",
     "start",
@@ -27,15 +26,15 @@ const ViewEmployee = () => {
     "zipcode"
   ]
 
-  React.useEffect(() => {
-    console.log(employeeList[employeeList.length - 1])
-    console.log(employeeList)
-  }, [employeeList])
-
   return (
     <section className="section-container view">
       <h1 className="view__title">View Employees</h1>
-      <DataTable headColumnList={thList} dataPropertiesList={dataProperties} bodyDataList={employeeList}/>
+      <DataTable 
+        id='view-dataTable'
+        headColumnList={thList}
+        dataPropertiesList={dataProperties}
+        bodyDataList={employeeList}
+      />
     </section>
   )
 }

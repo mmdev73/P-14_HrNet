@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# HRNet application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HRNet is an employee management application. It consists of two parts: adding a new employee and displaying a list of existing employees. It is coded in TypeScript and bundled with Vite. It also uses the hrnet-lib library.
 
-Currently, two official plugins are available:
+## Installation
+Clone this repository : [HRNet Repository](https://github.com/mmdev73/P-14_HrNet)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Then, go to the root of the repository and run the following command:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm i
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Development mode
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+To start the application in developpement mode, run the following command:
+
+```bash
+npm run dev
 ```
+
+### Production mode
+To start the application in production mode, run the following command:
+
+```bash
+npm run build
+```
+
+Then launch the index.html file in your browser.
+
+
+## Documentation
+
+You can find the documentation related to the application in the following file: 
+* [hrnet-lib documentation](https://www.npmjs.com/package/hrnet-lib)
+* [Zustand documentation](https://zustand.docs.pmnd.rs/getting-started/introduction)
