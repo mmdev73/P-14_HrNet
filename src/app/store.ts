@@ -26,7 +26,7 @@ type State = {
 }
 type Actions = {
   resetForm: () => void
-  updateField: (field: keyof Employee, value: string) => void
+  updateField: (field: keyof Employee, value: string|number) => void
   addEmployee: (employee: Employee) => void
   removeEmployee: (index: number) => void
 }
@@ -34,8 +34,8 @@ type Actions = {
 const initialFormData: Employee = {
   firstname: '',
   lastname: '',
-  dob: '',
-  start: '',
+  dob: 0,
+  start: 0,
   street: '',
   city: '',
   state: '',

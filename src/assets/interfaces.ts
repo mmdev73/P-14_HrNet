@@ -2,8 +2,8 @@
 export interface Employee {
   firstname: string,
   lastname: string,
-  dob: string | number,
-  start: string | number,
+  dob: number,
+  start: number,
   street: string,
   city: string,
   state: string,

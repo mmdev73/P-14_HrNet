@@ -12,6 +12,8 @@ const CreateEmployee = () => {
   const lastname = useAppStore(state => state.formData.lastname);
   const street = useAppStore(state => state.formData.street);
   const city = useAppStore(state => state.formData.city);
+  const dob = useAppStore(state => state.formData.dob);
+  const start = useAppStore(state => state.formData.start);
   const stateValue = useAppStore(state => state.formData.state);
   const zipcode = useAppStore(state => state.formData.zipcode);
   const department = useAppStore(state => state.formData.department);
@@ -49,17 +51,47 @@ const CreateEmployee = () => {
   const [error, setError] = React.useState<boolean>(false)
   const [errorList, setErrorList] = React.useState<string[]>([])
 
-  // DatePicker temporary state
-  const [dobValue, setDobValue] = React.useState<string>('')
-  const [startValue, setStartValue] = React.useState<string>('')
+  // DatePicker 
+  const dateOptions: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+  const localString: string = 'en-US'
+
+/**
+ * Converts a date string into a timestamp.
+ * 
+ * @param {string} date - The date string to convert.
+ * @returns {number} The timestamp representing the given date.
+ */
+  const handleDateChange = (date: string): number => {
+    return new Date(date).getTime()
+  }
+
+/**
+ * Formats a given date timestamp into a human-readable date string.
+ * 
+ * @param {number} date - The timestamp to format.
+ * @returns {string} The formatted date string in 'month day, year' format.
+ */
+  const formatDate = (date: number): string => {
+    return new Date(date).toLocaleDateString(localString, dateOptions)
+  }
   
+/**
+ * Handles the form submission event.
+ * 
+ * Prevents the default form submission behavior and gathers form data into an Employee object.
+ * Validates the form data and, if valid, adds the employee to the list and resets the form.
+ * If invalid, sets error flags and generates an error list.
+ * Finally, toggles the display of the modal.
+ * 
+ * @param {React.FormEvent} e - The form submission event.
+ */
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault()
     const formData: Employee = {
       firstname: firstname,
       lastname: lastname,
-      dob: new Date(dobValue).getTime(),
-      start: new Date(startValue).getTime(),
+      dob: dob,
+      start: start,
       street: street,
       city: city,
       state: stateValue,
@@ -80,20 +112,43 @@ const CreateEmployee = () => {
     return
   }
 
+/**
+ * Toggles the modal's visibility state.
+ * 
+ * Flips the boolean state of `isOpen` between true and false.
+ * This is typically used to show or hide the modal.
+ */
   const toggleModal = () => {
     setIsOpen(!isOpen)
   }
 
+/**
+ * Handles the "Cancel" button click event.
+ * 
+ * Toggles the modal's visibility state and resets the form.
+ */
   const handleCancel = () => {
     toggleModal()
     resetForm()
   }
 
+/**
+ * Handles the modal's cancel button click event.
+ * 
+ * Prevents the default event behavior and toggles the modal's visibility state.
+ * This is typically used to hide the modal when the user clicks the cancel button.
+ */
   const handleCancelModal = (e: React.FormEvent) => {
     e.preventDefault()
     toggleModal()
   }
 
+/**
+ * Handles the modal's view employees button click event.
+ * 
+ * Prevents the default event behavior, toggles the modal's visibility state
+ * and navigates to the /view route.
+ */
   const handleViewEmployees = (e: React.FormEvent) => {
     e.preventDefault()
     toggleModal()
@@ -158,14 +213,20 @@ const CreateEmployee = () => {
           <DatePicker
             id="dob"
             label="Date of Birth"
-            value={dobValue}
-            onChange={(date) => setDobValue(date)}
+            value={formatDate(dob)}
+            onChange={(date) => updateField('dob', handleDateChange(date))}
+            initialDaysOffset={(-365 * 18)}
+            dateOptions={dateOptions}
+            localDate={localString}
           />
           <DatePicker
             id="start"
             label="Start date"
-            value={startValue}
-            onChange={(date) => setStartValue(date)}
+            value={formatDate(start)}
+            onChange={(date) => updateField('start', handleDateChange(date))}
+            initialDaysOffset={-1}
+            dateOptions={dateOptions}
+            localDate={localString}
           />
         </fieldset>
         <fieldset className="create__form__fieldset">
