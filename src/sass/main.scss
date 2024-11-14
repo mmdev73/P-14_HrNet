@@ -41,13 +41,13 @@ body{
   height: 2rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: #0a6956;
+  background-color: Vars.$main-color-dark;
   color: #fff;
   cursor: pointer;
   transition: 0.4s;
   margin-top: 2rem;
   &:hover{
-    background-color: #1ABC9C;
+    background-color: Vars.$main-color;
     transition: 0.4s;
   }
   @media screen and (min-width: 768px) {
